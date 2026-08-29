@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments & Virtualenvs
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Distribution & Build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Test & Coverage caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+*-checkpoint.ipynb
+
+# Large Generated Datasets (Excluded from Git — Reproducible via scripts/data/)
+data/raw/*
+data/synthetic/*.csv
+data/synthetic/*.parquet
+data/processed/*.csv
+data/processed/*.parquet
+data/knowledge/embeddings/*.npy
+
+# Large Binary Model Artifacts (Excluded from Git — Reproducible via scripts/training/)
+*.joblib
+*.pkl
+models/*.joblib
+models/v1/*.joblib
+models/v2/*.joblib
+
+# Logs & Temporary Artifacts
+*.log
+.system_generated/
+tmp/
+temp/
+
+# Preserve Directory Readmes and Configs
+!data/README.md
+!data/knowledge/raw/*.md
+!data/knowledge/metadata/*.json
+!models/README.md
+!models/model_config.json
+!models/sample_evidence_v2.json
+!models/v1/*.json
+!models/v2/*.json
+!experiments/README.md
+!experiments/*.json

@@ -1,0 +1,159 @@
+{
+  "total_samples": 30094,
+  "ground_truth_anomalies": 1531,
+  "detected_anomalies": 3364,
+  "true_positives": 1524,
+  "false_positives": 1840,
+  "true_negatives": 26723,
+  "false_negatives": 7,
+  "accuracy": 0.9386,
+  "precision": 0.453,
+  "recall": 0.9954,
+  "f1_score": 0.6227,
+  "specificity": 0.9356,
+  "per_type_metrics": {
+    "SUDDEN_SALARY_INCREASE": {
+      "anomaly_type": "SUDDEN_SALARY_INCREASE",
+      "ground_truth_count": 120,
+      "detected_count": 231,
+      "true_positives": 120,
+      "false_positives": 111,
+      "false_negatives": 0,
+      "precision": 0.5195,
+      "recall": 1.0,
+      "f1_score": 0.6838
+    },
+    "SUDDEN_SALARY_DECREASE": {
+      "anomaly_type": "SUDDEN_SALARY_DECREASE",
+      "ground_truth_count": 106,
+      "detected_count": 224,
+      "true_positives": 105,
+      "false_positives": 119,
+      "false_negatives": 1,
+      "precision": 0.4688,
+      "recall": 0.9906,
+      "f1_score": 0.6364
+    },
+    "EXCESSIVE_OVERTIME": {
+      "anomaly_type": "EXCESSIVE_OVERTIME",
+      "ground_truth_count": 106,
+      "detected_count": 106,
+      "true_positives": 106,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "ATTENDANCE_PAY_MISMATCH": {
+      "anomaly_type": "ATTENDANCE_PAY_MISMATCH",
+      "ground_truth_count": 118,
+      "detected_count": 118,
+      "true_positives": 82,
+      "false_positives": 36,
+      "false_negatives": 36,
+      "precision": 0.6949,
+      "recall": 0.6949,
+      "f1_score": 0.6949
+    },
+    "IMPOSSIBLE_ATTENDANCE": {
+      "anomaly_type": "IMPOSSIBLE_ATTENDANCE",
+      "ground_truth_count": 111,
+      "detected_count": 187,
+      "true_positives": 111,
+      "false_positives": 76,
+      "false_negatives": 0,
+      "precision": 0.5936,
+      "recall": 1.0,
+      "f1_score": 0.745
+    },
+    "DUPLICATE_EMPLOYEE_RECORD": {
+      "anomaly_type": "DUPLICATE_EMPLOYEE_RECORD",
+      "ground_truth_count": 224,
+      "detected_count": 410,
+      "true_positives": 224,
+      "false_positives": 186,
+      "false_negatives": 0,
+      "precision": 0.5463,
+      "recall": 1.0,
+      "f1_score": 0.7066
+    },
+    "INCORRECT_PF": {
+      "anomaly_type": "INCORRECT_PF",
+      "ground_truth_count": 110,
+      "detected_count": 336,
+      "true_positives": 110,
+      "false_positives": 226,
+      "false_negatives": 0,
+      "precision": 0.3274,
+      "recall": 1.0,
+      "f1_score": 0.4933
+    },
+    "INCORRECT_ESI": {
+      "anomaly_type": "INCORRECT_ESI",
+      "ground_truth_count": 102,
+      "detected_count": 149,
+      "true_positives": 102,
+      "false_positives": 47,
+      "false_negatives": 0,
+      "precision": 0.6846,
+      "recall": 1.0,
+      "f1_score": 0.8127
+    },
+    "ABNORMAL_DEDUCTION": {
+      "anomaly_type": "ABNORMAL_DEDUCTION",
+      "ground_truth_count": 108,
+      "detected_count": 108,
+      "true_positives": 108,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0
+    },
+    "ABNORMALLY_HIGH_BONUS": {
+      "anomaly_type": "ABNORMALLY_HIGH_BONUS",
+      "ground_truth_count": 114,
+      "detected_count": 1801,
+      "true_positives": 114,
+      "false_positives": 1687,
+      "false_negatives": 0,
+      "precision": 0.0633,
+      "recall": 1.0,
+      "f1_score": 0.1191
+    },
+    "ABNORMAL_NET_SALARY": {
+      "anomaly_type": "ABNORMAL_NET_SALARY",
+      "ground_truth_count": 126,
+      "detected_count": 138,
+      "true_positives": 126,
+      "false_positives": 12,
+      "false_negatives": 0,
+      "precision": 0.913,
+      "recall": 1.0,
+      "f1_score": 0.9545
+    },
+    "MISSING_PAYROLL_RECORD": {
+      "anomaly_type": "MISSING_PAYROLL_RECORD",
+      "ground_truth_count": 0,
+      "detected_count": 0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0
+    },
+    "DUPLICATE_PAYMENT": {
+      "anomaly_type": "DUPLICATE_PAYMENT",
+      "ground_truth_count": 186,
+      "detected_count": 410,
+      "true_positives": 186,
+      "false_positives": 224,
+      "false_negatives": 0,
+      "precision": 0.4537,
+      "recall": 1.0,
+      "f1_score": 0.6242
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "total_queries": 9,
+  "recall_at_1": 1.0,
+  "recall_at_3": 1.0,
+  "recall_at_5": 1.0,
+  "mrr": 1.0,
+  "authority_accuracy": 1.0,
+  "jurisdiction_accuracy": 1.0,
+  "date_applicability_accuracy": 1.0,
+  "negative_test_pass_rate": 1.0,
+  "query_details": [
+    {
+      "query": "statutory 12 percent basic salary employee provident fund contribution rate",
+      "expected": "EPFO_ACT_1952",
+      "retrieved": [
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.6794
+    },
+    {
+      "query": "ESI wage ceiling threshold 21000 eligibility and 0.75 percent contribution rate",
+      "expected": "ESIC_ACT_1948",
+      "retrieved": [
+        "ESIC_ACT_1948",
+        "ESIC_ACT_1948",
+        "ESIC_ACT_1948",
+        "ESIC_ACT_1948",
+        "ESIC_ACT_1948"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.4247
+    },
+    {
+      "query": "Section 192 employer obligation to deduct monthly TDS on estimated annual salary",
+      "expected": "INCOME_TAX_SEC_192",
+      "retrieved": [
+        "INCOME_TAX_SEC_192",
+        "INCOME_TAX_SEC_192",
+        "INCOME_TAX_SEC_192",
+        "INCOME_TAX_SEC_192",
+        "INCOME_TAX_SEC_192"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.6153
+    },
+    {
+      "query": "Maharashtra state professional tax 200 per month and 300 rupees in February",
+      "expected": "MAHARASHTRA_PT_ACT_1975",
+      "retrieved": [
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.7295
+    },
+    {
+      "query": "Karnataka professional tax 200 rupees exemption for salary under 15000",
+      "expected": "KARNATAKA_PT_ACT_1976",
+      "retrieved": [
+        "KARNATAKA_PT_ACT_1976",
+        "KARNATAKA_PT_ACT_1976",
+        "KARNATAKA_PT_ACT_1976",
+        "KARNATAKA_PT_ACT_1976"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.5952
+    },
+    {
+      "query": "Company overtime compensation hourly basic rate 1.5x monthly 40 hour limit",
+      "expected": "COMPANY_OVERTIME_BONUS_POLICY_2024",
+      "retrieved": [
+        "COMPANY_OVERTIME_BONUS_POLICY_2024",
+        "COMPANY_OVERTIME_BONUS_POLICY_2024",
+        "COMPANY_OVERTIME_BONUS_POLICY_2024",
+        "COMPANY_OVERTIME_BONUS_POLICY_2024",
+        "COMPANY_OVERTIME_BONUS_POLICY_2024"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.4903
+    },
+    {
+      "query": "26 working days attendance reconciliation and loss of pay LOP salary deduction formula",
+      "expected": "COMPANY_LEAVE_ATTENDANCE_POLICY_2024",
+      "retrieved": [
+        "COMPANY_LEAVE_ATTENDANCE_POLICY_2024",
+        "COMPANY_LEAVE_ATTENDANCE_POLICY_2024",
+        "COMPANY_LEAVE_ATTENDANCE_POLICY_2024",
+        "COMPANY_LEAVE_ATTENDANCE_POLICY_2024",
+        "COMPANY_LEAVE_ATTENDANCE_POLICY_2024"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.6287
+    },
+    {
+      "query": "Professional Tax deduction rules for Mumbai office employees",
+      "expected": "MAHARASHTRA_PT_ACT_1975",
+      "retrieved": [
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975",
+        "MAHARASHTRA_PT_ACT_1975"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.5139
+    },
+    {
+      "query": "Current PF wage ceiling rules for 2024 payroll disbursement",
+      "expected": "EPFO_ACT_1952",
+      "retrieved": [
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952",
+        "EPFO_ACT_1952"
+      ],
+      "hit_at_1": true,
+      "hit_at_3": true,
+      "top_1_score": 0.3577
+    }
+  ]
+}

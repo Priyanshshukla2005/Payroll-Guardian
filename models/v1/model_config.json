@@ -1,0 +1,28 @@
+{
+  "selected_model": "RandomForest",
+  "optimal_threshold": 0.45,
+  "test_precision": 0.9975,
+  "test_recall": 0.7681,
+  "test_f1": 0.8679,
+  "test_pr_auc": 0.8484,
+  "test_roc_auc": 0.9226,
+  "test_unique_emp_fp_per_1000": 0.3,
+  "top_15_features": [
+    "num__net_to_gross_ratio",
+    "num__net_salary_change_percentage",
+    "num__basic_to_gross_ratio",
+    "num__pf_to_basic_ratio",
+    "num__gross_salary_change_percentage",
+    "num__deduction_to_gross_ratio",
+    "num__deduction_change_percentage",
+    "num__attendance_ratio",
+    "num__present_days_change",
+    "num__present_days",
+    "num__esi_to_gross_ratio",
+    "num__esi",
+    "num__gross_vs_desig_ratio",
+    "num__allowance_to_basic_ratio",
+    "num__gross_zscore_vs_history"
+  ],
+  "type_classifier_micro_f1": 0.401
+}

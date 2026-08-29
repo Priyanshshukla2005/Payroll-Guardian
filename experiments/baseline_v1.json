@@ -1,0 +1,16 @@
+{
+  "model_name": "RandomForestDetector_V1",
+  "version": "v1.0.0-phase3",
+  "timestamp": "2026-08-29T09:25:00Z",
+  "optimal_threshold": 0.45,
+  "test_precision": 0.998,
+  "test_recall": 0.7681,
+  "test_f1": 0.868,
+  "test_pr_auc": 0.8484,
+  "test_roc_auc": 0.9226,
+  "test_false_positives": 3,
+  "test_false_negatives": 355,
+  "test_unique_employee_fp_per_1000": 0.3,
+  "test_total_records": 30094,
+  "status": "FROZEN_BASELINE_V1"
+}

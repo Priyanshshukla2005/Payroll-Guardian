@@ -1,0 +1,9 @@
+{
+  "environment": "production",
+  "decision_threshold": 0.45,
+  "data_dir": "data",
+  "models_dir": "models",
+  "rag_min_relevance_threshold": 0.25,
+  "batch_size_streaming": 50000,
+  "log_level": "INFO"
+}

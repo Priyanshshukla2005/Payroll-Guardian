@@ -1,0 +1,26 @@
+{
+  "employee_id": "EMP0001251",
+  "payroll_month": "2024-01",
+  "risk_score": 0.0229,
+  "confidence": "LOW",
+  "top_signals": [
+    "Multivariate statistical anomaly across historical and cohort dimensions"
+  ],
+  "historical_comparison": {
+    "observed_basic": 14554.59,
+    "historical_mean_basic": 14554.59,
+    "salary_zscore_vs_history": 0.0,
+    "months_of_prior_history": 0.0
+  },
+  "peer_comparison": {
+    "department": "Engineering",
+    "designation": "Intern",
+    "dept_mean_gross": 126812.6878335535,
+    "gross_vs_dept_ratio": 0.25504971586480474
+  },
+  "rule_violations": [],
+  "anomaly_types": [
+    "SUBTLE_PF_MISMATCH"
+  ],
+  "human_readable_summary": "Employee EMP0001251 (2024-01) evaluated with 2.3% risk score (LOW confidence) classified as [SUBTLE_PF_MISMATCH]. Primary signals: Multivariate statistical anomaly across historical and cohort dimensions."
+}

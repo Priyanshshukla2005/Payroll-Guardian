@@ -1,0 +1,29 @@
+{
+  "employee_id": "EMP0000007",
+  "payroll_month": "2024-11",
+  "anomaly_probability": 0.997,
+  "predicted_label": 1,
+  "primary_category": "SUDDEN_SALARY_INCREASE",
+  "top_signals": [
+    {
+      "feature_name": "salary_change_percentage",
+      "observed_value": 70.57,
+      "historical_mean": 0.0,
+      "z_score": 0.0,
+      "percentage_change": 70.57,
+      "importance_rank": 1,
+      "signal_severity": "CRITICAL"
+    },
+    {
+      "feature_name": "attendance_ratio",
+      "observed_value": -1.957,
+      "historical_mean": null,
+      "z_score": null,
+      "percentage_change": 0.0,
+      "importance_rank": 3,
+      "signal_severity": "MEDIUM"
+    }
+  ],
+  "triggered_rules": [],
+  "human_readable_summary": "Employee EMP0000007 (2024-11) flagged with 99.7% anomaly probability [SUDDEN_SALARY_INCREASE]. Key signals: salary_change_percentage shifted +70.6% (observed: 70.57); attendance_ratio = -1.957."
+}

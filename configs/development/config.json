@@ -1,0 +1,11 @@
+{
+  "environment": "development",
+  "num_employees": 10000,
+  "num_months": 12,
+  "chunk_size_employees": 2000,
+  "random_seed": 42,
+  "decision_threshold": 0.45,
+  "data_dir": "data",
+  "models_dir": "models",
+  "rag_min_relevance_threshold": 0.20
+}

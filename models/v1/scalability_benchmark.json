@@ -1,0 +1,33 @@
+{
+  "development_scale": {
+    "dataset_name": "Development Scale",
+    "total_records": 120462,
+    "features_count": 80,
+    "rf_training_time_sec": 4.05,
+    "rf_inference_throughput_rec_per_sec": 610294.0,
+    "rf_latency_ms_per_rec": 0.0016,
+    "xgb_training_time_sec": 0.7,
+    "xgb_inference_throughput_rec_per_sec": 2620863.0,
+    "xgb_latency_ms_per_rec": 0.0004,
+    "peak_ram": "98.2 MB"
+  },
+  "main_ml_scale": {
+    "dataset_name": "Main ML Scale",
+    "total_records": 2400000,
+    "features_count": 80,
+    "xgb_extrapolated_training_time_sec": 18.9,
+    "inference_throughput_rec_per_sec": 4475213.0,
+    "latency_ms_per_rec": 0.0002,
+    "peak_ram": "63.0 MB"
+  },
+  "stress_streaming_scale": {
+    "dataset_name": "Stress-Test Streaming Scale",
+    "total_records": 18000000,
+    "streaming_chunk_size": 50000,
+    "chunk_latency_sec": 0.013,
+    "streaming_throughput_rec_per_sec": 3980881.0,
+    "full_18m_inference_time_sec": 4.5,
+    "full_18m_inference_time_min": 0.08,
+    "bounded_peak_ram": "61.4 MB"
+  }
+}
