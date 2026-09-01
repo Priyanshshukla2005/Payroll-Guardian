@@ -76,11 +76,11 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
 
   if (!anomaly) {
     return (
-      <div className="card-glass rounded-2xl p-12 text-center text-slate-400">
+      <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-12 text-center text-slate-400">
         <p className="text-sm">Employee record not found in this audit analysis.</p>
         <Link
           to={analysisId ? `/analysis/${analysisId}` : '/analysis'}
-          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 text-slate-200 text-xs font-semibold"
+          className="mt-4 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-obsidian-950 text-slate-200 text-xs font-semibold border border-white/10"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Analysis
@@ -95,15 +95,15 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
       <div>
         <Link
           to={`/analysis/${analysisId}`}
-          className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-brand-300 transition mb-4"
+          className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-400 hover:text-cyan-400 transition mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Back to Audit Batch ({analysisId?.substring(0, 12)}...)</span>
+          <span>Back to Audit Batch ({analysisId?.substring(0, 16)}...)</span>
         </Link>
 
-        <div className="card-glass rounded-3xl p-6 border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xl">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-brand-600/10 border border-brand-500/30 flex items-center justify-center text-brand-400 shadow-inner">
+            <div className="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
               <User className="w-7 h-7" />
             </div>
 
@@ -112,29 +112,29 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
                 <h2 className="text-2xl font-bold text-white font-mono">{anomaly.employee_id}</h2>
                 <SeverityBadge severity={anomaly.severity} size="sm" />
               </div>
-              <div className="flex items-center gap-4 text-xs text-slate-400">
+              <div className="flex items-center gap-3 text-xs text-slate-400">
                 <span className="flex items-center gap-1">
                   <Building className="w-3.5 h-3.5 text-slate-500" />
                   {anomaly.department}
                 </span>
-                <span>•</span>
+                <span className="text-white/20">•</span>
                 <span className="flex items-center gap-1">
                   <Briefcase className="w-3.5 h-3.5 text-slate-500" />
                   {anomaly.designation}
                 </span>
-                <span>•</span>
-                <span className="font-mono text-slate-500">{anomaly.payroll_month}</span>
+                <span className="text-white/20">•</span>
+                <span className="font-mono text-slate-400">{anomaly.payroll_month}</span>
               </div>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-4">
             {/* Calibrated Risk Score Card */}
-            <div className="p-3.5 rounded-2xl bg-slate-900/90 border border-slate-800 text-right min-w-[130px]">
-              <span className="text-[10px] uppercase font-bold text-slate-500 block tracking-wider">
+            <div className="p-3.5 rounded-xl bg-obsidian-950 border border-white/10 text-right min-w-[130px]">
+              <span className="text-[10px] uppercase font-mono font-bold text-slate-400 block tracking-wider">
                 Risk Score
               </span>
-              <span className="text-2xl font-extrabold font-mono text-brand-400">
+              <span className="text-2xl font-bold font-mono text-rose-400">
                 {formatRiskScore(anomaly.risk_score)}
               </span>
             </div>
@@ -142,7 +142,7 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
             {/* Launch AI Assistant button preloaded with context */}
             <Link
               to={`/assistant?analysisId=${analysisId}&employeeId=${anomaly.employee_id}`}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-2xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-lg shadow-brand-600/25 transition"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-brand-500 hover:from-cyan-400 hover:to-brand-400 text-obsidian-950 text-xs font-bold shadow-lg shadow-cyan-500/20 transition hover:scale-[1.02]"
             >
               <Bot className="w-4 h-4" />
               <span>Ask AI Assistant</span>
@@ -162,20 +162,20 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
           <AIExplanationPanel explanation={anomaly.explanation} />
 
           {/* Anomaly Audit Resolution Panel */}
-          <div className="card-glass rounded-3xl p-6 border-slate-800 space-y-4">
+          <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-6 space-y-4 shadow-xl">
             <div className="flex items-center gap-3">
-              <div className="p-2 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30">
+              <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
                 <h3 className="text-base font-bold text-white">Statutory Audit Resolution</h3>
-                <p className="text-xs text-slate-400">Record auditor sign-off and append to audit history</p>
+                <p className="text-xs text-slate-400">Record auditor sign-off and append to cryptographic ledger</p>
               </div>
             </div>
 
             {resolvedSuccessMsg && (
-              <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 shrink-0" />
+              <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/60 text-emerald-300 text-xs flex items-center gap-2 font-mono">
+                <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-400" />
                 <span>{resolvedSuccessMsg}</span>
               </div>
             )}
@@ -187,10 +187,10 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
                     key={st}
                     type="button"
                     onClick={() => setResolutionStatus(st)}
-                    className={`py-2 px-3 rounded-xl border text-xs font-bold transition ${
+                    className={`py-2 px-3 rounded-xl border text-xs font-mono font-bold transition ${
                       resolutionStatus === st
-                        ? 'border-brand-500 bg-brand-950/40 text-brand-300'
-                        : 'border-slate-800 bg-slate-900 text-slate-400 hover:text-slate-200'
+                        ? 'border-cyan-500 bg-cyan-950/40 text-cyan-300 shadow-sm'
+                        : 'border-white/5 bg-obsidian-950 text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     {st.replace('_', ' ')}
@@ -199,15 +199,15 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
-                  Resolution / Audit Justification Notes
+                <label className="block text-xs font-mono font-semibold text-slate-400 mb-1.5 uppercase">
+                  Audit Justification Notes
                 </label>
                 <textarea
                   value={resolutionNotes}
                   onChange={(e) => setResolutionNotes(e.target.value)}
                   rows={3}
                   placeholder="Provide audit reasoning (e.g., 'Corrective payroll adjustment scheduled in next cycle' or 'Verified legitimate bonus')..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-500 transition"
+                  className="w-full bg-obsidian-950 border border-white/10 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition font-mono"
                   required
                 />
               </div>
@@ -215,7 +215,7 @@ export const AnomalyDetails: React.FC<Props> = ({ currentAnalysis }) => {
               <button
                 type="submit"
                 disabled={isResolving || !resolutionNotes.trim()}
-                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-bold shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2"
+                className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 disabled:opacity-40 text-obsidian-950 text-xs font-bold shadow-lg shadow-emerald-500/20 transition flex items-center justify-center gap-2"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>{isResolving ? 'Submitting Resolution...' : 'Sign Off & Log Event'}</span>

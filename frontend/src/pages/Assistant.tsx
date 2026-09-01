@@ -117,9 +117,9 @@ export const Assistant: React.FC<Props> = ({ currentAnalysis }) => {
   return (
     <div className="max-w-5xl mx-auto space-y-6 flex flex-col h-[calc(100vh-8.5rem)]">
       {/* Top Header & Context Controls */}
-      <div className="card-glass rounded-2xl p-4 border-slate-800 flex flex-wrap items-center justify-between gap-4 shrink-0">
+      <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4 shrink-0 shadow-xl">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-400">
+          <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
             <Bot className="w-5 h-5" />
           </div>
           <div>
@@ -133,9 +133,9 @@ export const Assistant: React.FC<Props> = ({ currentAnalysis }) => {
         {/* Context Selectors */}
         <div className="flex items-center gap-2 text-xs">
           {currentAnalysis && (
-            <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl font-mono text-[11px] text-slate-300">
+            <div className="flex items-center gap-1.5 bg-obsidian-950 border border-white/10 px-3 py-1.5 rounded-xl font-mono text-[11px] text-slate-300">
               <span className="text-slate-500">Analysis:</span>
-              <span className="text-brand-300">{currentAnalysis.analysis_id.substring(0, 12)}...</span>
+              <span className="text-cyan-400 font-semibold">{currentAnalysis.analysis_id.substring(0, 16)}...</span>
             </div>
           )}
 
@@ -144,12 +144,12 @@ export const Assistant: React.FC<Props> = ({ currentAnalysis }) => {
             value={employeeId}
             onChange={(e) => setEmployeeId(e.target.value)}
             placeholder="Focus Employee (e.g. EMP_2041)"
-            className="bg-slate-900 border border-slate-800 rounded-xl px-3 py-1.5 text-[11px] text-slate-200 focus:outline-none focus:border-brand-500 font-mono w-48"
+            className="bg-obsidian-950 border border-white/10 rounded-xl px-3 py-1.5 text-[11px] text-slate-200 focus:outline-none focus:border-cyan-400 font-mono w-48"
           />
 
           <button
             onClick={clearChat}
-            className="p-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-400 hover:text-slate-200 transition"
+            className="p-1.5 rounded-xl bg-obsidian-950 hover:bg-charcoal-800 border border-white/10 text-slate-400 hover:text-slate-200 transition"
             title="Reset Chat Session"
           >
             <Trash2 className="w-4 h-4" />
@@ -165,10 +165,10 @@ export const Assistant: React.FC<Props> = ({ currentAnalysis }) => {
 
         {loading && (
           <div className="flex items-start gap-3 justify-start">
-            <div className="w-8 h-8 rounded-full bg-brand-600/20 border border-brand-500/30 flex items-center justify-center text-brand-400 shrink-0 animate-pulse">
+            <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0 animate-pulse">
               <Bot className="w-4 h-4" />
             </div>
-            <div className="card-glass rounded-2xl rounded-tl-sm p-4 text-xs text-slate-400 border-slate-800 flex items-center gap-3">
+            <div className="bg-charcoal-900 rounded-2xl rounded-tl-sm p-4 text-xs text-slate-400 border border-white/10 flex items-center gap-3">
               <LoadingSpinner size="sm" />
               <span>Retrieving compliance chunks & synthesizing grounded answer...</span>
             </div>
@@ -201,12 +201,12 @@ export const Assistant: React.FC<Props> = ({ currentAnalysis }) => {
                 ? `Ask about ${employeeId}'s anomaly evidence, rule violations, or recommended next steps...`
                 : 'Ask a grounded payroll statutory or audit question...'
             }
-            className="w-full pl-5 pr-24 py-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-500 transition shadow-inner"
+            className="w-full pl-5 pr-28 py-3.5 rounded-2xl bg-charcoal-900 border border-white/10 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition shadow-inner"
           />
           <button
             type="submit"
             disabled={!inputText.trim() || loading}
-            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-xs shadow-md transition flex items-center gap-1.5"
+            className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-brand-500 hover:from-cyan-400 hover:to-brand-400 disabled:opacity-30 disabled:cursor-not-allowed text-obsidian-950 font-bold text-xs shadow-md transition flex items-center gap-1.5"
           >
             <span>Send</span>
             <Send className="w-3.5 h-3.5" />

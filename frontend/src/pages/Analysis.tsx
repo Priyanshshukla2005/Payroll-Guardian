@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Clock, Cpu } from 'lucide-react';
+import { Clock, Cpu, FileSearch } from 'lucide-react';
 import { AnalysisResponse } from '../types/api';
 import { payrollApi } from '../services/payrollApi';
 import { MetricCards } from '../components/dashboard/MetricCards';
@@ -8,7 +8,6 @@ import { AnomalyTable } from '../components/anomalies/AnomalyTable';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
 import { ErrorAlert } from '../components/common/ErrorAlert';
 import { EmptyState } from '../components/common/EmptyState';
-import { FileSearch } from 'lucide-react';
 
 interface Props {
   currentAnalysis: AnalysisResponse | null;
@@ -26,7 +25,6 @@ export const Analysis: React.FC<Props> = ({ currentAnalysis, onSetCurrentAnalysi
       if (currentAnalysis && currentAnalysis.analysis_id === analysisId) {
         setAnalysis(currentAnalysis);
       } else {
-        // Fetch from API
         setLoading(true);
         setError(null);
         payrollApi
@@ -41,7 +39,7 @@ export const Analysis: React.FC<Props> = ({ currentAnalysis, onSetCurrentAnalysi
     } else if (currentAnalysis) {
       setAnalysis(currentAnalysis);
     }
-  }, [analysisId, currentAnalysis]);
+  }, [analysisId, currentAnalysis, onSetCurrentAnalysis]);
 
   if (loading) {
     return <LoadingSpinner message="Retrieving payroll audit batch..." size="lg" />;
@@ -66,30 +64,30 @@ export const Analysis: React.FC<Props> = ({ currentAnalysis, onSetCurrentAnalysi
   return (
     <div className="space-y-8">
       {/* Batch Header Bar */}
-      <div className="card-glass rounded-2xl p-6 border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xl">
         <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-slate-800 text-brand-400 font-bold border border-slate-700">
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20">
               {analysis.status}
             </span>
             <span className="text-xs font-mono text-slate-400">
-              ID: {analysis.analysis_id}
+              BATCH ID: <strong className="text-slate-200">{analysis.analysis_id}</strong>
             </span>
           </div>
-          <h2 className="text-xl font-bold text-white tracking-tight">
-            Payroll Audit Batch — {analysis.payroll_period}
+          <h2 className="text-2xl font-bold text-white tracking-tight">
+            Payroll Audit Batch — <span className="font-mono text-cyan-400">{analysis.payroll_period}</span>
           </h2>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 font-mono">
-          <div className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
-            <Cpu className="w-3.5 h-3.5 text-brand-400" />
-            <span>Model: <strong className="text-slate-200">{analysis.model_version}</strong></span>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-slate-400 font-mono">
+          <div className="flex items-center gap-1.5 bg-obsidian-950 px-3 py-1.5 rounded-lg border border-white/5">
+            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+            <span>Engine: <strong className="text-slate-200">{analysis.model_version}</strong></span>
           </div>
 
-          <div className="flex items-center gap-1.5 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-800">
+          <div className="flex items-center gap-1.5 bg-obsidian-950 px-3 py-1.5 rounded-lg border border-white/5">
             <Clock className="w-3.5 h-3.5 text-amber-400" />
-            <span>Duration: <strong className="text-slate-200">{analysis.duration_ms.toFixed(1)}ms</strong></span>
+            <span>Execution: <strong className="text-slate-200">{analysis.duration_ms.toFixed(1)}ms</strong></span>
           </div>
         </div>
       </div>

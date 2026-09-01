@@ -3,8 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-slate-950 text-slate-100 min-h-screen;
+    @apply bg-obsidian-950 text-slate-100 min-h-screen font-sans antialiased selection:bg-cyan-500 selection:text-black;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
@@ -15,21 +20,62 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #090d16;
+    background: #05070c;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #182137;
     border-radius: 9999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #28375c;
   }
 }
 
+.bg-grid-fintech {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.12) 0%, rgba(5, 7, 12, 0) 70%);
+}
+
+.glass-panel {
+  background: rgba(11, 16, 29, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-subtle {
+  background: rgba(19, 25, 41, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .card-glass {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(16, 22, 38, 0.65);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
+
+.card-glass-hover {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-glass-hover:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  background: rgba(22, 31, 55, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 240, 255, 0.08);
+}
+
+.text-mono-nums {
+  font-variant-numeric: tabular-nums;
+}
+

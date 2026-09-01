@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { UploadPayroll } from './pages/UploadPayroll';
@@ -7,6 +7,7 @@ import { Analysis } from './pages/Analysis';
 import { AnomalyDetails } from './pages/AnomalyDetails';
 import { Compliance } from './pages/Compliance';
 import { Assistant } from './pages/Assistant';
+import { LandingOverview } from './pages/LandingOverview';
 import { NotFound } from './pages/NotFound';
 import { AnalysisResponse, AuthUser } from './types/api';
 import { DEMO_ANALYSIS } from './utils/sampleData';
@@ -80,7 +81,15 @@ export const App: React.FC = () => {
         onUserChange={handleUserChange}
       >
         <Routes>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route
+            path="/"
+            element={
+              <LandingOverview
+                currentAnalysis={currentAnalysis}
+                onLoadDemo={handleLoadDemo}
+              />
+            }
+          />
           <Route
             path="/dashboard"
             element={

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Code, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Code, ArrowRight, ShieldCheck, FileSpreadsheet } from 'lucide-react';
 import { Dropzone } from '../components/payroll/Dropzone';
 import { JsonInputModal } from '../components/payroll/JsonInputModal';
 import { LoadingSpinner } from '../components/common/LoadingSpinner';
@@ -62,42 +62,46 @@ export const UploadPayroll: React.FC<Props> = ({ onAnalysisSuccess }) => {
 
   return (
     <div className="max-w-4xl mx-auto space-y-8">
-      {/* Header */}
+      {/* Editorial Header */}
       <div>
-        <h2 className="text-2xl font-bold text-white tracking-tight">Upload Payroll Disbursement</h2>
-        <p className="text-xs text-slate-400 mt-1">
-          Upload monthly payroll registers to trigger automated anomaly detection, statutory compliance matching, and grounded audit explanations.
+        <div className="flex items-center space-x-2 text-cyan-400 font-mono text-xs uppercase tracking-widest font-semibold mb-2">
+          <FileSpreadsheet className="w-4 h-4" />
+          <span>Ingestion Pipeline</span>
+        </div>
+        <h2 className="text-3xl font-bold text-white tracking-tight">Upload Payroll Disbursement</h2>
+        <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
+          Ingest monthly payroll registers (CSV, Parquet, or JSON) to trigger automated feature engineering, ensemble ML anomaly detection, statutory compliance matching, and grounded audit explanations.
         </p>
       </div>
 
       {error && <ErrorAlert title="Payroll Analysis Failed" error={error} />}
 
       {/* Main Upload Box */}
-      <div className="card-glass rounded-3xl p-8 border-slate-800 space-y-6">
+      <div className="bg-charcoal-900 border border-white/10 rounded-2xl p-8 space-y-6 shadow-2xl">
         {/* Controls Row */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-4 border-b border-slate-800">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6 border-b border-white/5">
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1.5">
+            <label className="block text-xs font-mono font-semibold text-slate-400 mb-1.5 uppercase">
               Target Payroll Month
             </label>
             <input
               type="month"
               value={payrollPeriod}
               onChange={(e) => setPayrollPeriod(e.target.value)}
-              className="w-full rounded-xl bg-slate-900 border border-slate-800 px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500 font-mono"
+              className="w-full rounded-xl bg-obsidian-950 border border-white/10 px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 font-mono"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-400 mb-1.5">
+            <label className="block text-xs font-mono font-semibold text-slate-400 mb-1.5 uppercase">
               Primary Jurisdiction
             </label>
             <select
               value={jurisdiction}
               onChange={(e) => setJurisdiction(e.target.value)}
-              className="w-full rounded-xl bg-slate-900 border border-slate-800 px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500"
+              className="w-full rounded-xl bg-obsidian-950 border border-white/10 px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-cyan-400 font-mono"
             >
-              <option value="INDIA">India (Federal/Central EPFO & ESIC)</option>
+              <option value="INDIA">India (Federal EPFO & ESIC Acts)</option>
               <option value="MAHARASHTRA">Maharashtra (State PT & Shops Act)</option>
               <option value="KARNATAKA">Karnataka (State PT & Shops Act)</option>
             </select>
@@ -106,15 +110,15 @@ export const UploadPayroll: React.FC<Props> = ({ onAnalysisSuccess }) => {
 
         {/* Dropzone */}
         {loading ? (
-          <div className="py-12 text-center space-y-4">
+          <div className="py-16 text-center space-y-4">
             <LoadingSpinner size="lg" message={loadingStage} />
-            <div className="max-w-md mx-auto bg-slate-900/60 rounded-xl p-4 border border-slate-800 text-xs text-slate-400 font-mono space-y-1">
-              <div className="flex items-center gap-2 text-brand-400 font-medium">
+            <div className="max-w-md mx-auto bg-obsidian-950 rounded-xl p-5 border border-white/10 text-xs text-slate-400 font-mono space-y-2">
+              <div className="flex items-center justify-center gap-2 text-cyan-400 font-semibold">
                 <ShieldCheck className="w-4 h-4" />
-                <span>Executing 4-tier verification pipeline...</span>
+                <span>Executing Multi-Layer Verification Pipeline</span>
               </div>
               <p className="text-[11px] text-slate-500">
-                1. Feature Engineering &bull; 2. Hybrid ML Detector &bull; 3. Compliance RAG &bull; 4. Grounded LLM
+                1. Schema Check &bull; 2. Feature Extraction &bull; 3. Hybrid ML Detector &bull; 4. Compliance RAG
               </p>
             </div>
           </div>
@@ -131,7 +135,7 @@ export const UploadPayroll: React.FC<Props> = ({ onAnalysisSuccess }) => {
               <button
                 type="button"
                 onClick={() => setIsJsonModalOpen(true)}
-                className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-brand-300 font-medium transition"
+                className="inline-flex items-center gap-2 text-xs text-slate-400 hover:text-cyan-400 font-mono transition"
               >
                 <Code className="w-4 h-4" />
                 <span>Paste raw JSON array instead</span>
@@ -141,7 +145,7 @@ export const UploadPayroll: React.FC<Props> = ({ onAnalysisSuccess }) => {
                 type="button"
                 onClick={handleUpload}
                 disabled={!selectedFile || loading}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold text-xs shadow-lg shadow-brand-600/30 transition"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-brand-500 hover:from-cyan-400 hover:to-brand-400 disabled:opacity-30 disabled:cursor-not-allowed text-obsidian-950 font-bold text-xs shadow-lg shadow-cyan-500/20 transition-all duration-200 hover:scale-[1.02]"
               >
                 <span>Run Payroll Audit</span>
                 <ArrowRight className="w-4 h-4" />
