@@ -13,7 +13,15 @@ def test_root_app_is_canonical_fastapi_instance():
 
 def test_root_app_routes_match_api_v1():
     """Verify that all core API routes are registered on the root app instance."""
-    route_paths = [r.path for r in root_app_module.app.routes]
+    route_paths = []
+    for r in root_app_module.app.routes:
+        if hasattr(r, "path"):
+            route_paths.append(r.path)
+        elif hasattr(r, "routes"):
+            for sub_r in r.routes:
+                if hasattr(sub_r, "path"):
+                    route_paths.append(sub_r.path)
+
     assert "/" in route_paths
     assert "/docs" in route_paths
     assert "/openapi.json" in route_paths
