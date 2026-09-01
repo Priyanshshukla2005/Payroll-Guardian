@@ -7,6 +7,8 @@ export const API_PREFIX = '/api/v1';
 
 export const getApiUrl = (path: string): string => {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
-  // If running with Vite dev proxy, relative paths work, but fallback to absolute base URL
+  if (cleanPath.startsWith(API_PREFIX)) {
+    return `${API_BASE_URL}${cleanPath}`;
+  }
   return `${API_BASE_URL}${API_PREFIX}${cleanPath}`;
 };

@@ -7,11 +7,11 @@ import { apiClient } from './api';
 
 export const auditApi = {
   async getAnalysisTimeline(analysisId: string): Promise<AuditEventItem[]> {
-    return apiClient<AuditEventItem[]>(`/api/v1/audit/analysis/${analysisId}`);
+    return apiClient<AuditEventItem[]>(`/audit/analysis/${analysisId}`);
   },
 
   async listEvents(limit: number = 50): Promise<AuditEventItem[]> {
-    return apiClient<AuditEventItem[]>(`/api/v1/audit/events?limit=${limit}`);
+    return apiClient<AuditEventItem[]>(`/audit/events?limit=${limit}`);
   },
 
   async resolveAnomaly(
@@ -20,7 +20,7 @@ export const auditApi = {
     status: string,
     notes: string
   ): Promise<any> {
-    return apiClient<any>(`/api/v1/anomalies/${analysisId}/${employeeId}/resolve`, {
+    return apiClient<any>(`/anomalies/${analysisId}/${employeeId}/resolve`, {
       method: 'POST',
       body: JSON.stringify({ status, resolution_notes: notes }),
     });

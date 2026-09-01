@@ -3,7 +3,7 @@ import { apiClient } from './api';
 
 export const authApi = {
   async login(username: string, password: string): Promise<TokenResponse> {
-    const data = await apiClient<TokenResponse>('/api/v1/auth/login', {
+    const data = await apiClient<TokenResponse>('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
     });
@@ -24,7 +24,7 @@ export const authApi = {
   },
 
   async getProfile(): Promise<AuthUser> {
-    return apiClient<AuthUser>('/api/v1/auth/me');
+    return apiClient<AuthUser>('/auth/me');
   },
 
   logout(): void {
