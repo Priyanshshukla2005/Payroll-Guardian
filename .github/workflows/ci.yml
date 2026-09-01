@@ -61,7 +61,7 @@ jobs:
 
       - name: Run Vitest Unit Tests
         working-directory: frontend
-        run: npm test -- --watchAll=false
+        run: npm test -- --run
 
       - name: Build Production Bundle
         working-directory: frontend
