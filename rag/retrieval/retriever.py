@@ -136,6 +136,18 @@ class PayrollRAGRetriever:
                 no_answer_reason="Jurisdiction is UNKNOWN. Cannot determine applicable statutory regulation without geographic jurisdiction.",
             )
 
+        if not self.vector_store or len(self.vector_store.chunks_metadata) == 0:
+            return StructuredRAGResponse(
+                query=query,
+                jurisdiction=jurisdiction,
+                payroll_date=payroll_date,
+                topic=topic,
+                results=[],
+                total_found=0,
+                status="NO_RELIABLE_SOURCE_FOUND",
+                no_answer_reason="No authoritative legal sources found in the knowledge index.",
+            )
+
         # 2. Embed query
         q_vec = self.embedding_provider.embed_query(query)
 

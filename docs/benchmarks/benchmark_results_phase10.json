@@ -1,0 +1,48 @@
+{
+  "timestamp": "2026-08-30T16:32:03.667811",
+  "environment": {
+    "os": "Windows 10",
+    "cpu": "AMD64 Family 25 Model 116 Stepping 1, AuthenticAMD",
+    "cores": 16,
+    "ram_gb": 15.3,
+    "python": "3.11.9"
+  },
+  "results": [
+    {
+      "batch_size": 100,
+      "validation_ms": 8.56,
+      "feature_eng_ms": 524.25,
+      "ml_inference_ms": 932.66,
+      "total_analysis_ms": 1504.49,
+      "throughput_rec_per_sec": 66.5,
+      "peak_ram_mb": 0.84
+    },
+    {
+      "batch_size": 1000,
+      "validation_ms": 8.5,
+      "feature_eng_ms": 4480.52,
+      "ml_inference_ms": 1072.86,
+      "total_analysis_ms": 5950.1,
+      "throughput_rec_per_sec": 168.1,
+      "peak_ram_mb": 6.01
+    },
+    {
+      "batch_size": 10000,
+      "validation_ms": 16.65,
+      "feature_eng_ms": 46932.26,
+      "ml_inference_ms": 1218.99,
+      "total_analysis_ms": 52342.23,
+      "throughput_rec_per_sec": 191.1,
+      "peak_ram_mb": 59.24
+    },
+    {
+      "batch_size": 100000,
+      "validation_ms": 56.38,
+      "feature_eng_ms": 507455.82,
+      "ml_inference_ms": 3586.5,
+      "total_analysis_ms": 555373.28,
+      "throughput_rec_per_sec": 180.1,
+      "peak_ram_mb": 591.38
+    }
+  ]
+}

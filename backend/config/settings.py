@@ -1,16 +1,15 @@
-"""Configuration settings, presets, and constants for AI Payroll Guardian.
+"""Centralized configuration and environment settings for AI Payroll Guardian.
 
-Defines dataset generation parameters, scale presets (Dev 120k, Main 2.4M, Stress 18M),
-department salary hierarchies, attendance defaults, and synthetic statutory rules.
+Supports both data pipeline generation parameters (Phases 1-4)
+and FastAPI backend / API service settings (Phase 7).
 """
 
 from enum import Enum
+import os
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
-
-# Base project paths
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DATA_DIR = PROJECT_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
@@ -18,8 +17,13 @@ PROCESSED_DATA_DIR = DATA_DIR / "processed"
 SYNTHETIC_DATA_DIR = DATA_DIR / "synthetic"
 
 
+# =========================================================================
+# PHASE 1-4 DATA PIPELINE CONFIGURATION & PRESETS
+# =========================================================================
+
 class DatasetScale(str, Enum):
-    """Configurable dataset scale presets."""
+    """Supported dataset scale presets."""
+
     DEV = "dev"          # 10,000 employees x 12 months = 120,000 records
     MAIN = "main"        # 100,000 employees x 24 months = 2,400,000 records
     STRESS = "stress"    # 500,000 employees x 36 months = 18,000,000 records
@@ -225,15 +229,102 @@ class Settings(BaseModel):
 
 def get_settings(scale: Optional[DatasetScale] = None) -> Settings:
     """Instantiate and return global settings with optional scale preset."""
-    settings = Settings()
+    s = Settings()
     if scale and scale in SCALE_PRESETS:
         n_emp, n_months, _ = SCALE_PRESETS[scale]
-        settings.scale = scale
-        settings.num_employees = n_emp
-        settings.num_months = n_months
+        s.scale = scale
+        s.num_employees = n_emp
+        s.num_months = n_months
 
     # Ensure data subdirectories exist
-    settings.raw_data_dir.mkdir(parents=True, exist_ok=True)
-    settings.processed_data_dir.mkdir(parents=True, exist_ok=True)
-    settings.synthetic_data_dir.mkdir(parents=True, exist_ok=True)
-    return settings
+    s.raw_data_dir.mkdir(parents=True, exist_ok=True)
+    s.processed_data_dir.mkdir(parents=True, exist_ok=True)
+    s.synthetic_data_dir.mkdir(parents=True, exist_ok=True)
+    return s
+
+
+# =========================================================================
+# PHASE 7 FASTAPI BACKEND / API SERVICE CONFIGURATION
+# =========================================================================
+
+class BackendSettings(BaseModel):
+    """Centralized application settings resolved from environment variables."""
+
+    app_name: str = "AI Payroll Guardian API"
+    app_version: str = "1.0.0"
+    app_env: str = Field(default_factory=lambda: os.getenv("APP_ENV", "development"))
+    api_prefix: str = "/api/v1"
+    api_host: str = Field(default_factory=lambda: os.getenv("API_HOST", "0.0.0.0"))
+    api_port: int = Field(default_factory=lambda: int(os.getenv("API_PORT", "8000")))
+    log_level: str = Field(default_factory=lambda: os.getenv("LOG_LEVEL", "INFO"))
+
+    # Models & Knowledge directories
+    ai_model_version: str = Field(default_factory=lambda: os.getenv("AI_MODEL_VERSION", "v2"))
+    models_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "models" / os.getenv("AI_MODEL_VERSION", "v2"))
+    embeddings_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "knowledge" / "embeddings")
+    raw_knowledge_dir: Path = Field(default_factory=lambda: PROJECT_ROOT / "data" / "knowledge" / "raw")
+
+    # File uploads
+    max_upload_size_mb: int = Field(default_factory=lambda: int(os.getenv("MAX_UPLOAD_SIZE_MB", "50")))
+    allowed_file_extensions: List[str] = [".csv", ".json", ".parquet"]
+
+    # Security & CORS
+    cors_allowed_origins: List[str] = Field(
+        default_factory=lambda: [
+            origin.strip()
+            for origin in os.getenv(
+                "CORS_ALLOWED_ORIGINS",
+                "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173,http://127.0.0.1:5173",
+            ).split(",")
+            if origin.strip()
+        ]
+    )
+
+    # Security, Auth & RBAC (Phase 10)
+    database_url: str = Field(
+        default_factory=lambda: os.getenv("DATABASE_URL", f"sqlite:///{PROJECT_ROOT / 'payroll_guardian.db'}")
+    )
+    secret_key: str = Field(
+        default_factory=lambda: os.getenv(
+            "SECRET_KEY", "payroll_guardian_enterprise_secret_key_2026_super_secure_phase10"
+        )
+    )
+    jwt_algorithm: str = Field(default_factory=lambda: os.getenv("JWT_ALGORITHM", "HS256"))
+    access_token_expire_minutes: int = Field(
+        default_factory=lambda: int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
+    )
+
+    # Model and System Versioning Metadata (Phase 10)
+    model_name: str = "HybridPayrollDetector_v2"
+    model_threshold: float = 0.45
+    feature_schema_version: str = "features_v1"
+    rag_knowledge_version: str = "rag_2024_06"
+    llm_version: str = "grounded_llm_v2"
+
+    # LLM Provider configuration
+    llm_provider: str = Field(default_factory=lambda: os.getenv("LLM_PROVIDER", "mock"))
+    llm_model: str = Field(default_factory=lambda: os.getenv("LLM_MODEL", "mock-grounded-v1"))
+
+    @model_validator(mode="after")
+    def validate_production_configuration(self) -> "BackendSettings":
+        """Strict production security constraints (Phase 10)."""
+        if self.app_env.lower() == "production":
+            default_dev_secret = "payroll_guardian_enterprise_secret_key_2026_super_secure_phase10"
+            if not self.secret_key or self.secret_key == default_dev_secret:
+                raise ValueError(
+                    "In production (APP_ENV=production), SECRET_KEY must be provided via an environment "
+                    "variable and cannot be empty or the default development secret."
+                )
+            if len(self.secret_key) < 32:
+                raise ValueError(
+                    "In production, SECRET_KEY must be a cryptographically strong secret of at least 32 characters."
+                )
+            if "*" in self.cors_allowed_origins:
+                raise ValueError(
+                    "Wildcard CORS origins ('*') are strictly disallowed in production environments."
+                )
+        return self
+
+
+# Global singleton settings instance for backend
+settings = BackendSettings()

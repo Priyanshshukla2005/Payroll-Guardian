@@ -1,5 +1,5 @@
-"""Initialization module for backend and configuration."""
+"""AI Payroll Guardian — Backend & API Layer (Phase 7)."""
 
-from backend.config.settings import Settings, get_settings
+from backend.main import app, create_app
 
-__all__ = ["Settings", "get_settings"]
+__all__ = ["app", "create_app"]

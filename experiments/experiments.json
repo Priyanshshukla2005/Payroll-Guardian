@@ -174,5 +174,93 @@
     "false_negatives": 431,
     "unique_emp_fp_per_1000": 0.6,
     "notes": "Validation evaluation; optimal threshold 0.3"
+  },
+  {
+    "experiment_id": "EXP-IsolationForest-20260829-043745",
+    "timestamp": "2026-08-29T04:37:45.841375+00:00",
+    "model_name": "IsolationForest",
+    "dataset_version": "v1.0-synthetic-dev",
+    "features_version": "66-features-v1",
+    "hyperparameters": {
+      "optimal_threshold": 0.3
+    },
+    "threshold": 0.3,
+    "training_time_sec": 10.92,
+    "inference_time_ms": 0.0104,
+    "precision": 0.26,
+    "recall": 0.3262,
+    "f1_score": 0.2893,
+    "pr_auc": 0.2528,
+    "roc_auc": 0.7609,
+    "false_positives": 518,
+    "false_negatives": 376,
+    "unique_emp_fp_per_1000": 51.97,
+    "notes": "Validation evaluation; optimal threshold 0.3"
+  },
+  {
+    "experiment_id": "EXP-RandomForest-20260829-043750",
+    "timestamp": "2026-08-29T04:37:50.114458+00:00",
+    "model_name": "RandomForest",
+    "dataset_version": "v1.0-synthetic-dev",
+    "features_version": "66-features-v1",
+    "hyperparameters": {
+      "optimal_threshold": 0.45
+    },
+    "threshold": 0.45,
+    "training_time_sec": 4.1,
+    "inference_time_ms": 0.0029,
+    "precision": 1.0,
+    "recall": 0.7061,
+    "f1_score": 0.8277,
+    "pr_auc": 0.8098,
+    "roc_auc": 0.9206,
+    "false_positives": 0,
+    "false_negatives": 164,
+    "unique_emp_fp_per_1000": 0.0,
+    "notes": "Validation evaluation; optimal threshold 0.45"
+  },
+  {
+    "experiment_id": "EXP-XGBoost-20260829-043751",
+    "timestamp": "2026-08-29T04:37:51.045895+00:00",
+    "model_name": "XGBoost",
+    "dataset_version": "v1.0-synthetic-dev",
+    "features_version": "66-features-v1",
+    "hyperparameters": {
+      "optimal_threshold": 0.75
+    },
+    "threshold": 0.75,
+    "training_time_sec": 0.75,
+    "inference_time_ms": 0.0006,
+    "precision": 1.0,
+    "recall": 0.7025,
+    "f1_score": 0.8253,
+    "pr_auc": 0.8112,
+    "roc_auc": 0.921,
+    "false_positives": 0,
+    "false_negatives": 166,
+    "unique_emp_fp_per_1000": 0.0,
+    "notes": "Validation evaluation; optimal threshold 0.75"
+  },
+  {
+    "experiment_id": "EXP-Autoencoder-20260829-043826",
+    "timestamp": "2026-08-29T04:38:26.338696+00:00",
+    "model_name": "Autoencoder",
+    "dataset_version": "v1.0-synthetic-dev",
+    "features_version": "66-features-v1",
+    "hyperparameters": {
+      "optimal_threshold": 0.3
+    },
+    "threshold": 0.3,
+    "training_time_sec": 35.1,
+    "inference_time_ms": 0.0011,
+    "precision": 0.9549,
+    "recall": 0.2276,
+    "f1_score": 0.3676,
+    "pr_auc": 0.4062,
+    "roc_auc": 0.7195,
+    "false_positives": 6,
+    "false_negatives": 431,
+    "unique_emp_fp_per_1000": 0.6,
+    "notes": "Validation evaluation; optimal threshold 0.3"
   }
 ]
