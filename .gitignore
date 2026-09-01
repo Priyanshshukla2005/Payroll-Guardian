@@ -46,6 +46,7 @@ data/synthetic/*.parquet
 data/processed/*.csv
 data/processed/*.parquet
 data/knowledge/embeddings/*.npy
+!data/knowledge/embeddings/embeddings.npy
 
 # Large Binary Model Artifacts (Excluded from Git — Reproducible via scripts/training/)
 *.joblib
@@ -53,6 +54,8 @@ data/knowledge/embeddings/*.npy
 models/*.joblib
 models/v1/*.joblib
 models/v2/*.joblib
+!models/v2/hybrid_detector_v2.joblib
+!models/v2/preprocessor_v2.joblib
 
 # Logs & Temporary Artifacts
 *.log

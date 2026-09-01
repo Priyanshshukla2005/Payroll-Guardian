@@ -81,12 +81,13 @@ class HybridPayrollDetector_V2(BaseAnomalyDetector):
         raw_df: Optional[pd.DataFrame] = None,
     ) -> pd.DataFrame:
         """Compute individual risk signals: ML score, Rule score, Statistical score, and Final Risk."""
-        if not self.is_fitted:
-            raise RuntimeError("Hybrid detector must be fitted before computing risk signals.")
-
         # 1. ML Behavioral Probability
-        raw_ml_probs = self.ml_model.predict_proba(X)[:, 1]
-        ml_probs = self.calibrator.calibrate(raw_ml_probs) if self.calibrator.is_fitted else raw_ml_probs
+        if not self.is_fitted:
+            raw_ml_probs = np.zeros(len(X), dtype=float)
+            ml_probs = raw_ml_probs
+        else:
+            raw_ml_probs = self.ml_model.predict_proba(X)[:, 1]
+            ml_probs = self.calibrator.calibrate(raw_ml_probs) if self.calibrator.is_fitted else raw_ml_probs
 
         # 2. Deterministic Rule Score
         if raw_df is not None:
@@ -113,7 +114,13 @@ class HybridPayrollDetector_V2(BaseAnomalyDetector):
 
     def predict_score(self, X: Union[pd.DataFrame, np.ndarray], raw_df: Optional[pd.DataFrame] = None) -> np.ndarray:
         """Compute final combined risk score in [0, 1]."""
-        X_df = X if isinstance(X, pd.DataFrame) else pd.DataFrame(X, columns=self.feature_names_in_)
+        feature_names = getattr(self, "feature_names_in_", None)
+        if isinstance(X, pd.DataFrame):
+            X_df = X
+        elif feature_names is not None and hasattr(X, "shape") and len(feature_names) == X.shape[1]:
+            X_df = pd.DataFrame(X, columns=feature_names)
+        else:
+            X_df = pd.DataFrame(X)
         signals = self.compute_risk_signals(X_df, raw_df=raw_df)
         return signals["final_risk_score"].values
 
